@@ -194,21 +194,27 @@ with main_tabs[1]:
     col_btn1, col_btn2 = st.columns(2)
     with col_btn1:
         st.markdown("### 😷 With Mask Samples")
-        wm_dir = os.path.join("data", "with_mask")
-        wm_samples = [f for f in os.listdir(wm_dir) if f.lower().endswith(('.jpg', '.png'))][:6]
-        chosen_wm = st.selectbox("Select 'With Mask' sample:", wm_samples, key="sample_wm")
-        if st.button("Detect on this 'With Mask' picture", key="btn_wm"):
-            sample_img = Image.open(os.path.join(wm_dir, chosen_wm))
-            display_detection(sample_img, file_title=f"Sample: {chosen_wm}")
+        wm_dir = os.path.join("sample_images", "with_mask")
+        if os.path.isdir(wm_dir):
+            wm_samples = [f for f in os.listdir(wm_dir) if f.lower().endswith(('.jpg', '.png'))][:6]
+            chosen_wm = st.selectbox("Select 'With Mask' sample:", wm_samples, key="sample_wm")
+            if st.button("Detect on this 'With Mask' picture", key="btn_wm"):
+                sample_img = Image.open(os.path.join(wm_dir, chosen_wm))
+                display_detection(sample_img, file_title=f"Sample: {chosen_wm}")
+        else:
+            st.info("Sample images not available. Please upload your own image in the Upload tab.")
 
     with col_btn2:
         st.markdown("### 👤 Without Mask Samples")
-        wom_dir = os.path.join("data", "without_mask")
-        wom_samples = [f for f in os.listdir(wom_dir) if f.lower().endswith(('.jpg', '.png'))][:6]
-        chosen_wom = st.selectbox("Select 'Without Mask' sample:", wom_samples, key="sample_wom")
-        if st.button("Detect on this 'Without Mask' picture", key="btn_wom"):
-            sample_img = Image.open(os.path.join(wom_dir, chosen_wom))
-            display_detection(sample_img, file_title=f"Sample: {chosen_wom}")
+        wom_dir = os.path.join("sample_images", "without_mask")
+        if os.path.isdir(wom_dir):
+            wom_samples = [f for f in os.listdir(wom_dir) if f.lower().endswith(('.jpg', '.png'))][:6]
+            chosen_wom = st.selectbox("Select 'Without Mask' sample:", wom_samples, key="sample_wom")
+            if st.button("Detect on this 'Without Mask' picture", key="btn_wom"):
+                sample_img = Image.open(os.path.join(wom_dir, chosen_wom))
+                display_detection(sample_img, file_title=f"Sample: {chosen_wom}")
+        else:
+            st.info("Sample images not available. Please upload your own image in the Upload tab.")
 
 # ----------------- TAB 3: PERFORMANCE -----------------
 with main_tabs[2]:
