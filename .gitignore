@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual Environment & IDE
+.vscode/
+venv/
+env/
+
+# Dataset images (large binaries)
+data/
