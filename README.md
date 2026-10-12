@@ -104,3 +104,4 @@ print("P(Mask):   ", f"{result['probability_with_mask'] * 100:.2f}%")
 
 ## 📜 License
 This project is open-source and available under the MIT License.
+"# Face-Mask-Detection-using-RNN" 
